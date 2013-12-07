@@ -58,6 +58,7 @@ public class RemoveFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			parent.getNotes().remove(list.getSelectedValue());
+			list.setListData((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
 		}
 	}
 	

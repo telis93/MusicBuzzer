@@ -73,7 +73,7 @@ public class Frame extends JFrame{
 		}
 		playButton = new JButton(new ImageIcon(img));
 		playButton.setFont(playButton.getFont().deriveFont((float) 18));
-		removeButton =  new JButton("Clear");
+		removeButton =  new JButton("Remove...");
 		removeButton.setFont(removeButton.getFont().deriveFont((float) 18));
 		removePopupMenu = new JPopupMenu();
 		

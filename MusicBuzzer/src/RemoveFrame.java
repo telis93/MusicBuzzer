@@ -31,6 +31,13 @@ public class RemoveFrame extends JFrame{
 		}
 	}
 	
+	class removeButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			parent.getNotes().remove(list.getSelectedValue());
+		}
+	}
+	
 	
 
 }

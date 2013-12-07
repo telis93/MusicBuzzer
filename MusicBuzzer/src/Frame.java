@@ -21,6 +21,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import org.gpl.JSplitButton.JSplitButton;
+import org.gpl.JSplitButton.action.SplitButtonActionListener;
 
 
 
@@ -88,7 +89,7 @@ public class Frame extends JFrame{
 		flat.addActionListener(new FlatButtonListener());
 		addButton.addActionListener(new AddButtonListener());
 		playButton.addActionListener(new PlayButtonListener());
-		removeButton.addActionListener(new RemoveButtonListener());
+		removeButton.addSplitButtonActionListener(new RemoveButtonListener());
 		removeAllMenuItem.addActionListener(new RemoveAllMenuItemListener());
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -253,11 +254,14 @@ public class Frame extends JFrame{
 		}
 	}
 	
-	class RemoveButtonListener implements ActionListener {
+	class RemoveButtonListener implements SplitButtonActionListener {
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void buttonClicked(ActionEvent e) {
 			new RemoveFrame(Frame.this);	
 		}
+
+		@Override
+		public void splitButtonClicked(ActionEvent arg0) {}
 	}
 	
 	class RemoveAllMenuItemListener implements ActionListener {

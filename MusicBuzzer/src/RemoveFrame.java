@@ -22,7 +22,9 @@ public class RemoveFrame extends JFrame{
 		list = new JList<Note>((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
 		list.setPreferredSize(new Dimension(150, 200));
 		okButton = new JButton("OK");
+		okButton.addActionListener(new OkButtonListener());
 		removeButton = new JButton("Remove");
+		removeButton.addActionListener(new removeButtonListener());
 		panel = this.getContentPane();
 		
 		panel.setLayout(new GridBagLayout());

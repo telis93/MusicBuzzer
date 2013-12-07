@@ -5,6 +5,8 @@ public class Note {
 	private boolean sharp;
 	private boolean flat;
 	private DurationValue duration;
+	final static public String SHARP_SIGN = "#";
+	final static public String FLAT_SIGN = "\u266D";
 	
 	public Note(String name, double freq) {
 		this.name = name;
@@ -22,19 +24,27 @@ public class Note {
 		return duration;
 	}
 	public void setSharp(boolean sharp) {
-		if(sharp && !this.sharp)
+		if(sharp && !this.sharp){
 			freq *= Math.pow(2,1/12.0);
-		else if(!sharp && this.sharp)
+			name += SHARP_SIGN;
+		}
+		else if (!sharp && this.sharp) {
 			freq /=Math.pow(2,1/12.0);
+			name = name.substring(0,name.indexOf(SHARP_SIGN));
+		}
 		this.sharp = sharp;
 			
 	}
 	
 	public void setFlat(boolean flat) {
-		if(flat && !this.flat)
+		if(flat && !this.flat) {
 			freq /= Math.pow(2,1/12.0);
-		else if(!flat && this.flat)
+			name += FLAT_SIGN;
+		}
+		else if(!flat && this.flat) {
 			freq *= Math.pow(2,1/12.0);
+			name = name.substring(0, name.indexOf(FLAT_SIGN));
+		}
 		this.flat = flat;
 	}
 	

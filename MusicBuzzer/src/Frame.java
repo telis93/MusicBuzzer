@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import org.gpl.JSplitButton.JSplitButton;
+import org.gpl.JSplitButton.action.SplitButtonActionListener;
+
 
 
 @SuppressWarnings("serial")
@@ -34,9 +37,12 @@ public class Frame extends JFrame{
 	private JButton addButton;
 	private ArrayList<Note> notes;
 	private JButton playButton;
-	private JButton	clearButton;
+	private JSplitButton removeButton;
+	private JPopupMenu removePopupMenu;
+	private JMenuItem removeAllMenuItem;
 	
 	public Frame() {
+		super("MusicBuzzer");
 		this.notes = new ArrayList<Note>();
 		Container panel = this.getContentPane();
 		list = new JComboBox<Note>();
@@ -56,9 +62,9 @@ public class Frame extends JFrame{
 		slider.setOrientation(JSlider.VERTICAL);
 		slider.setPreferredSize(new Dimension(slider.getPreferredSize().width, slider.getPreferredSize().height-90) );
 		
-		sharp = new JToggleButton("#");
+		sharp = new JToggleButton(Note.SHARP_SIGN);
 		sharp.setFont(sharp.getFont().deriveFont((float)35));
-		flat = new JToggleButton("\u266D");
+		flat = new JToggleButton(Note.FLAT_SIGN);
 		flat.setFont(flat.getFont().deriveFont((float)35));
 		dot = new JToggleButton(".");
 		dot.setFont(dot.getFont().deriveFont((float)35));
@@ -72,14 +78,19 @@ public class Frame extends JFrame{
 		}
 		playButton = new JButton(new ImageIcon(img));
 		playButton.setFont(playButton.getFont().deriveFont((float) 18));
-		clearButton =  new JButton("Clear");
-		clearButton.setFont(clearButton.getFont().deriveFont((float) 18));
+		removeButton =  new JSplitButton("Remove...");
+		removeButton.setFont(removeButton.getFont().deriveFont((float) 18));
+		removePopupMenu = new JPopupMenu();
+		removeButton.setPopupMenu(removePopupMenu);
+		removeAllMenuItem = new JMenuItem("Remove ALL");
+		removePopupMenu.add(removeAllMenuItem);
 		
 		sharp.addActionListener(new SharpButtonListener());
 		flat.addActionListener(new FlatButtonListener());
 		addButton.addActionListener(new AddButtonListener());
 		playButton.addActionListener(new PlayButtonListener());
-		clearButton.addActionListener(new ClearButtonListener());
+		removeButton.addSplitButtonActionListener(new RemoveButtonListener());
+		removeAllMenuItem.addActionListener(new RemoveAllMenuItemListener());
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -120,11 +131,15 @@ public class Frame extends JFrame{
 		panel.add(playButton,c);
 		c.gridx = 3;
 		c.gridy = 2;
-		panel.add(clearButton,c);
+		panel.add(removeButton,c);
 		
 		this.setVisible(true);
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public ArrayList<Note> getNotes() {
+		return notes;
 	}
 	
 	private void addDurations() {
@@ -239,7 +254,17 @@ public class Frame extends JFrame{
 		}
 	}
 	
-	class ClearButtonListener implements ActionListener {
+	class RemoveButtonListener implements SplitButtonActionListener {
+		@Override
+		public void buttonClicked(ActionEvent e) {
+			new RemoveFrame(Frame.this);	
+		}
+
+		@Override
+		public void splitButtonClicked(ActionEvent arg0) {}
+	}
+	
+	class RemoveAllMenuItemListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 				notes.clear();

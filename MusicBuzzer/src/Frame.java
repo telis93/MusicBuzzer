@@ -34,7 +34,7 @@ public class Frame extends JFrame{
 	private JButton addButton;
 	private ArrayList<Note> notes;
 	private JButton playButton;
-	private JButton	clearButton;
+	private JButton	removeButton;
 	
 	public Frame() {
 		this.notes = new ArrayList<Note>();
@@ -72,14 +72,14 @@ public class Frame extends JFrame{
 		}
 		playButton = new JButton(new ImageIcon(img));
 		playButton.setFont(playButton.getFont().deriveFont((float) 18));
-		clearButton =  new JButton("Clear");
-		clearButton.setFont(clearButton.getFont().deriveFont((float) 18));
+		removeButton =  new JButton("Clear");
+		removeButton.setFont(removeButton.getFont().deriveFont((float) 18));
 		
 		sharp.addActionListener(new SharpButtonListener());
 		flat.addActionListener(new FlatButtonListener());
 		addButton.addActionListener(new AddButtonListener());
 		playButton.addActionListener(new PlayButtonListener());
-		clearButton.addActionListener(new ClearButtonListener());
+		removeButton.addActionListener(new ClearButtonListener());
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -120,7 +120,7 @@ public class Frame extends JFrame{
 		panel.add(playButton,c);
 		c.gridx = 3;
 		c.gridy = 2;
-		panel.add(clearButton,c);
+		panel.add(removeButton,c);
 		
 		this.setVisible(true);
 		this.pack();

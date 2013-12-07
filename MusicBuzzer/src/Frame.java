@@ -251,7 +251,7 @@ public class Frame extends JFrame{
 	class RemoveButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			removePopupMenu.show(removeButton, 0, removeButton.getHeight());	
+			new RemoveFrame(Frame.this);	
 		}
 	}
 	

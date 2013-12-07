@@ -24,6 +24,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class Frame extends JFrame{
+	private GridBagLayout layout;
 	private JComboBox<Note> list;
 	private JComboBox<DurationValue> durationList;
 	private JSlider slider;
@@ -45,6 +46,8 @@ public class Frame extends JFrame{
 		durationList = new JComboBox<DurationValue>();
 		addDurations();
 		durationList.setSelectedIndex(2);
+		
+		layout = new GridBagLayout();
 		
 		slider = new JSlider(-3,3);
 		slider.setPaintLabels(true);
@@ -83,7 +86,7 @@ public class Frame extends JFrame{
 		c.gridwidth = 2;
 
 		
-		this.setLayout(new GridBagLayout());
+		this.setLayout(layout);
 		c.fill = GridBagConstraints.BOTH;
 		c.gridwidth = 2;
 		c.gridx = 0;

@@ -84,6 +84,7 @@ public class Frame extends JFrame{
 		flat.addActionListener(new FlatButtonListener());
 		addButton.addActionListener(new AddButtonListener());
 		playButton.addActionListener(new PlayButtonListener());
+		removeButton.addActionListener(new RemoveButtonListener());
 		removeAllMenuItem.addActionListener(new RemoveAllMenuItemListener());
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -241,6 +242,13 @@ public class Frame extends JFrame{
 				e1.printStackTrace();
 			} 
 			file.delete();
+		}
+	}
+	
+	class RemoveButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			removePopupMenu.show(removeButton, 0, removeButton.getHeight());	
 		}
 	}
 	

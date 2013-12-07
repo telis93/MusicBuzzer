@@ -84,7 +84,7 @@ public class Frame extends JFrame{
 		flat.addActionListener(new FlatButtonListener());
 		addButton.addActionListener(new AddButtonListener());
 		playButton.addActionListener(new PlayButtonListener());
-		removeButton.addActionListener(new ClearButtonListener());
+		removeAllMenuItem.addActionListener(new RemoveAllMenuItemListener());
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -244,7 +244,7 @@ public class Frame extends JFrame{
 		}
 	}
 	
-	class ClearButtonListener implements ActionListener {
+	class RemoveAllMenuItemListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 				notes.clear();

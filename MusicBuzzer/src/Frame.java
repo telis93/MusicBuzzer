@@ -132,10 +132,11 @@ public class Frame extends JFrame{
 		c.gridx = 3;
 		c.gridy = 2;
 		panel.add(removeButton,c);
-		
-		this.setVisible(true);
+
 		this.pack();
+		this.setMinimumSize(this.getSize());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
 	}
 	
 	public ArrayList<Note> getNotes() {

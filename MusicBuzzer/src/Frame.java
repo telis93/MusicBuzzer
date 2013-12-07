@@ -61,9 +61,9 @@ public class Frame extends JFrame{
 		slider.setOrientation(JSlider.VERTICAL);
 		slider.setPreferredSize(new Dimension(slider.getPreferredSize().width, slider.getPreferredSize().height-90) );
 		
-		sharp = new JToggleButton("#");
+		sharp = new JToggleButton(Note.SHARP_SIGN);
 		sharp.setFont(sharp.getFont().deriveFont((float)35));
-		flat = new JToggleButton("\u266D");
+		flat = new JToggleButton(Note.FLAT_SIGN);
 		flat.setFont(flat.getFont().deriveFont((float)35));
 		dot = new JToggleButton(".");
 		dot.setFont(dot.getFont().deriveFont((float)35));

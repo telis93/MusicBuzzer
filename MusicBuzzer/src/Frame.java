@@ -137,6 +137,10 @@ public class Frame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	public ArrayList<Note> getNotes() {
+		return notes;
+	}
+	
 	private void addDurations() {
 		Font freeSerif = null;
 		InputStream is = Frame.class.getResourceAsStream("/resources/FreeSerif.ttf");

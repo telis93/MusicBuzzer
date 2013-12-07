@@ -41,6 +41,7 @@ public class Frame extends JFrame{
 	private JMenuItem removeAllMenuItem;
 	
 	public Frame() {
+		super("MusicBuzzer");
 		this.notes = new ArrayList<Note>();
 		Container panel = this.getContentPane();
 		list = new JComboBox<Note>();

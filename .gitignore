@@ -1,6 +1,12 @@
 *.class
-
+.classpath
+.project
+beep.bat
+Primavera.bat
+*.prefs
 # Package Files #
 *.jar
 *.war
 *.ear
+
+

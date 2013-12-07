@@ -1,4 +1,6 @@
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -20,6 +22,13 @@ public class RemoveFrame extends JFrame{
 		this.setVisible(true);
 		this.pack();
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+	}
+	
+	class OkButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			RemoveFrame.this.dispose();	
+		}
 	}
 	
 	

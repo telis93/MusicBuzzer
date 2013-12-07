@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import org.gpl.JSplitButton.JSplitButton;
+
 
 
 @SuppressWarnings("serial")
@@ -34,7 +36,7 @@ public class Frame extends JFrame{
 	private JButton addButton;
 	private ArrayList<Note> notes;
 	private JButton playButton;
-	private JButton	removeButton;
+	private JSplitButton removeButton;
 	private JPopupMenu removePopupMenu;
 	private JMenuItem removeAllMenuItem;
 	
@@ -74,9 +76,10 @@ public class Frame extends JFrame{
 		}
 		playButton = new JButton(new ImageIcon(img));
 		playButton.setFont(playButton.getFont().deriveFont((float) 18));
-		removeButton =  new JButton("Remove...");
+		removeButton =  new JSplitButton("Remove...");
 		removeButton.setFont(removeButton.getFont().deriveFont((float) 18));
 		removePopupMenu = new JPopupMenu();
+		removeButton.setPopupMenu(removePopupMenu);
 		removeAllMenuItem = new JMenuItem("Remove ALL");
 		removePopupMenu.add(removeAllMenuItem);
 		

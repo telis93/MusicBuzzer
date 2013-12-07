@@ -18,7 +18,16 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JSlider;
+import javax.swing.JToggleButton;
 
 import org.gpl.JSplitButton.JSplitButton;
 import org.gpl.JSplitButton.action.SplitButtonActionListener;

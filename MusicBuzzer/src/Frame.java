@@ -36,6 +36,7 @@ public class Frame extends JFrame{
 	private JButton playButton;
 	private JButton	removeButton;
 	private JPopupMenu removePopupMenu;
+	private JMenuItem removeAllMenuItem;
 	
 	public Frame() {
 		this.notes = new ArrayList<Note>();
@@ -76,6 +77,8 @@ public class Frame extends JFrame{
 		removeButton =  new JButton("Remove...");
 		removeButton.setFont(removeButton.getFont().deriveFont((float) 18));
 		removePopupMenu = new JPopupMenu();
+		removeAllMenuItem = new JMenuItem("Remove ALL");
+		removePopupMenu.add(removeAllMenuItem);
 		
 		sharp.addActionListener(new SharpButtonListener());
 		flat.addActionListener(new FlatButtonListener());

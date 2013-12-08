@@ -4,6 +4,7 @@ public class Note {
 	private double freq;
 	private boolean sharp;
 	private boolean flat;
+	private int octave;
 	private DurationValue duration;
 	final static public String SHARP_SIGN = "#";
 	final static public String FLAT_SIGN = "\u266D";
@@ -14,6 +15,10 @@ public class Note {
 		this.flat = false;
 		this.sharp = false;
 		this.duration = new DurationValue(DurationValue.Value.QUARTER);
+	}
+	
+	public void setOctave(int octave) {
+		this.octave = octave;
 	}
 	
 	public void setDuration(DurationValue duration) {

@@ -23,6 +23,8 @@ public class MusicBuzzerTune  extends Tune {
 		KeySignature key = new KeySignature(abc.notation.Note.C, KeySignature.MAJOR);
 		music.addElement(key);
 		for(Note n: notes) {
+			if(notes.indexOf(n) % 20 == 0)
+				tuneAsString +="\n";
 			tuneAsString += n.toABC();
 		}
 		scoreUI.setVisible(true);

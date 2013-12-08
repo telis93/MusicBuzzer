@@ -11,5 +11,13 @@ public class MusicBuzzerTune  extends Tune {
 		this.notes = notes;
 	}
 	
+	public void addNotes() {
+		Music music = new Music();
+		for(Note n: notes){
+			music.addElement(n.toABC());
+		}
+
+	}
+	
 
 }

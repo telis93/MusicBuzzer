@@ -43,20 +43,41 @@ public class Duration {
 	}
 	
 	public short toABC() {
-		if(value == DurationValue.WHOLE)
+		if(value == DurationValue.WHOLE){
+			if(dotted)
+				return Note.DOTTED_WHOLE;
 			return Note.WHOLE;
-		else if(value == DurationValue.HALF)
+		}
+		else if(value == DurationValue.HALF){
+			if(dotted)
+				return Note.DOTTED_HALF;
 			return Note.HALF;
-		else if(value == DurationValue.QUARTER)
+		}
+		else if(value == DurationValue.QUARTER) {
+			if(dotted)
+				return Note.DOTTED_QUARTER;
 			return Note.QUARTER;
-		else if(value == DurationValue.EIGHTTH)
+		}
+		else if(value == DurationValue.EIGHTTH) {
+			if(dotted)
+				return Note.DOTTED_EIGHTH;
 			return Note.EIGHTH;
-		else if(value == DurationValue.SIXTEENTH)
+		}
+		else if(value == DurationValue.SIXTEENTH) {
+			if(dotted)
+				return Note.DOTTED_SIXTEENTH;
 			return Note.SIXTEENTH;
-		else if(value == DurationValue.THIRTYSECOND)
+		}
+		else if(value == DurationValue.THIRTYSECOND) {
+			if(dotted)
+				return Note.DOTTED_THIRTY_SECOND;
 			return Note.THIRTY_SECOND;
-		else 
+		}
+		else {
+			if(dotted)
+				return Note.DOTTED_SIXTY_FOURTH; 
 			return Note.SIXTY_FOURTH;
+		}
 	}
 	
 	public double getDuration(int tempo) {

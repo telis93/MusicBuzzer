@@ -1,3 +1,5 @@
+import abc.notation.Note;
+
 
 public class Duration {
 	DurationValue value;
@@ -19,10 +21,25 @@ public class Duration {
 			return "\uD834\uDD61";
 		else if(value == DurationValue.THIRTYSECOND)
 			return "\uD834\uDD62";
-		else if(value == DurationValue.SIXTYFOURTH)
+		else 
 			return "\uD834\uDD63";
-		else
-			return "\uD834\uDD64";
+	}
+	
+	public short toABC() {
+		if(value == DurationValue.WHOLE)
+			return Note.WHOLE;
+		else if(value == DurationValue.HALF)
+			return Note.HALF;
+		else if(value == DurationValue.QUARTER)
+			return Note.QUARTER;
+		else if(value == DurationValue.EIGHTTH)
+			return Note.EIGHTH;
+		else if(value == DurationValue.SIXTEENTH)
+			return Note.SIXTEENTH;
+		else if(value == DurationValue.THIRTYSECOND)
+			return Note.THIRTY_SECOND;
+		else 
+			return Note.SIXTY_FOURTH;
 	}
 	
 	public double getDuration(int tempo) {

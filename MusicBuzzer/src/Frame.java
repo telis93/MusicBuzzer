@@ -177,7 +177,6 @@ public class Frame extends JFrame{
 		durations.addElement(new Duration(DurationValue.SIXTEENTH));
 		durations.addElement(new Duration(DurationValue.THIRTYSECOND));
 		durations.addElement(new Duration(DurationValue.SIXTYFOURTH));
-		durations.addElement(new Duration(DurationValue.ONEHUNDREDTWENTYEIGHTTH));
 		
 		durationList.setModel(durations);
 	}

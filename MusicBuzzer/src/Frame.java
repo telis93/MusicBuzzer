@@ -191,8 +191,8 @@ public class Frame extends JFrame{
 				half--;
 			exp=(2*i) + half;
 			notes.addElement(new Note(Character.toString((char)('A'+i)),440*Math.pow(Math.pow(2, 1/12.0), exp)));
-			if(i<2) 
-				notes.getElementAt(i).updateOctave(1);
+			if(i>=2) 
+				notes.getElementAt(i).updateOctave(-1);
 		}
 		
 		list.setModel(notes);

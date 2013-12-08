@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 
 @SuppressWarnings("serial")
@@ -24,6 +25,7 @@ public class RemoveFrame extends JFrame{
 		this.parent = parent;
 		list = new JList<Note>((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
 		list.setPreferredSize(new Dimension(150, 200));
+		list.setVisibleRowCount(11);
 		okButton = new JButton("OK");
 		okButton.addActionListener(new OkButtonListener());
 		removeButton = new JButton("Remove");
@@ -35,7 +37,7 @@ public class RemoveFrame extends JFrame{
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridheight = 5;
-		panel.add(list,c);
+		panel.add(new JScrollPane(list),c);
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 1;
 		c.gridy = 0;

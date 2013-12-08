@@ -47,6 +47,7 @@ public class Note {
 			value.setAccidental(AccidentalType.SHARP);
 		else if(flat)
 			value.setAccidental(AccidentalType.FLAT);
+		value.setDuration(duration.toABC());
 		return value;
 	}
 	

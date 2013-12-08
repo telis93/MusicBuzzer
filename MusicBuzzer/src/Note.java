@@ -1,3 +1,5 @@
+import abc.notation.AccidentalType;
+
 
 public class Note {
 	private String name;
@@ -17,21 +19,37 @@ public class Note {
 		this.duration = new Duration(DurationValue.QUARTER);
 	}
 	
-	public String toABC() {
-		String value = "";
+	public byte nametoABC() {
+		char name = this.name.charAt(0);
+		if(name == 'A')
+			return abc.notation.Note.A;
+		else if(name == 'B')
+			return abc.notation.Note.B;
+		else if(name == 'C')
+			return abc.notation.Note.C;
+		else if(name == 'D')
+			return abc.notation.Note.D;
+		else if(name == 'E')
+			return abc.notation.Note.E;
+		else if(name == 'F')
+			return abc.notation.Note.F;
+		else if(name == 'G')
+			return abc.notation.Note.G;
+		else 
+			return ' ';
+				
+	}
+	
+	public abc.notation.Note toABC() {
+		abc.notation.Note value = new abc.notation.Note(nametoABC());
 		if(sharp)
-			value += "^";
+			value.setAccidental(AccidentalType.SHARP);
 		else if(flat)
-			value += "_";
-		value = Character.toString(name.charAt(0));
-		for(int i = 0; i < octave; i++) {
-			if(octave > 0)
-				value += "'";
-			else
-				value += ",";
-		}
+			value.setAccidental(AccidentalType.FLAT);
 		return value;
 	}
+	
+	
 	
 	public void setOctave(int octave) {
 		this.octave = octave;
@@ -51,7 +69,7 @@ public class Note {
 		}
 		else if (!sharp && this.sharp) {
 			freq /=Math.pow(2,1/12.0);
-			name = name.substring(0,name.indexOf(SHARP_SIGN));
+			name = Character.toString(name.charAt(0));
 		}
 		this.sharp = sharp;
 			

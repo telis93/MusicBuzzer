@@ -38,7 +38,7 @@ import org.gpl.JSplitButton.action.SplitButtonActionListener;
 public class Frame extends JFrame{
 	private GridBagLayout layout;
 	private JComboBox<Note> list;
-	private JComboBox<DurationValue> durationList;
+	private JComboBox<Duration> durationList;
 	private JSlider slider;
 	private JToggleButton dot;
 	private JToggleButton sharp;
@@ -58,7 +58,7 @@ public class Frame extends JFrame{
 		list.setFont(list.getFont().deriveFont((float)35));
 		((JLabel)list.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		addNotes();
-		durationList = new JComboBox<DurationValue>();
+		durationList = new JComboBox<Duration>();
 		addDurations();
 		durationList.setSelectedIndex(2);
 		
@@ -168,16 +168,16 @@ public class Frame extends JFrame{
 		}
 		freeSerif = freeSerif.deriveFont(Font.PLAIN, 35);
 		durationList.setFont(freeSerif);
-		DefaultComboBoxModel<DurationValue> durations = new DefaultComboBoxModel<DurationValue>();
+		DefaultComboBoxModel<Duration> durations = new DefaultComboBoxModel<Duration>();
 		
-		durations.addElement(new DurationValue(DurationValue.Value.WHOLE));
-		durations.addElement(new DurationValue(DurationValue.Value.HALF));
-		durations.addElement(new DurationValue(DurationValue.Value.QUARTER));
-		durations.addElement(new DurationValue(DurationValue.Value.EIGHTTH));
-		durations.addElement(new DurationValue(DurationValue.Value.SIXTEENTH));
-		durations.addElement(new DurationValue(DurationValue.Value.THIRTYSECOND));
-		durations.addElement(new DurationValue(DurationValue.Value.SIXTYFOURTH));
-		durations.addElement(new DurationValue(DurationValue.Value.ONEHUNDREDTWENTYEIGHTTH));
+		durations.addElement(new Duration(DurationValue.WHOLE));
+		durations.addElement(new Duration(DurationValue.HALF));
+		durations.addElement(new Duration(DurationValue.QUARTER));
+		durations.addElement(new Duration(DurationValue.EIGHTTH));
+		durations.addElement(new Duration(DurationValue.SIXTEENTH));
+		durations.addElement(new Duration(DurationValue.THIRTYSECOND));
+		durations.addElement(new Duration(DurationValue.SIXTYFOURTH));
+		durations.addElement(new Duration(DurationValue.ONEHUNDREDTWENTYEIGHTTH));
 		
 		durationList.setModel(durations);
 	}
@@ -230,7 +230,7 @@ public class Frame extends JFrame{
 				selectedNote.setSharp(true);
 			if(flat.isSelected())
 				selectedNote.setFlat(true);
-			selectedNote.setDuration((DurationValue) durationList.getSelectedItem());
+			selectedNote.setDuration((Duration) durationList.getSelectedItem());
 			notes.add(selectedNote);
 		}
 	}

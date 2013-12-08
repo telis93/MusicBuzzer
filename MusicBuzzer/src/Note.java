@@ -5,7 +5,7 @@ public class Note {
 	private boolean sharp;
 	private boolean flat;
 	private int octave;
-	private DurationValue duration;
+	private Duration duration;
 	final static public String SHARP_SIGN = "#";
 	final static public String FLAT_SIGN = "\u266D";
 	
@@ -14,7 +14,7 @@ public class Note {
 		this.freq = freq;
 		this.flat = false;
 		this.sharp = false;
-		this.duration = new DurationValue(DurationValue.Value.QUARTER);
+		this.duration = new Duration(DurationValue.QUARTER);
 	}
 	
 	public String toABC() {
@@ -37,11 +37,11 @@ public class Note {
 		this.octave = octave;
 	}
 	
-	public void setDuration(DurationValue duration) {
+	public void setDuration(Duration duration) {
 		this.duration = duration;
 	}
 	
-	public DurationValue getDuration() {
+	public Duration getDuration() {
 		return duration;
 	}
 	public void setSharp(boolean sharp) {

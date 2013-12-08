@@ -45,10 +45,10 @@ public class RemoveFrame extends JFrame{
 		c.gridy = 1;
 		panel.add(removeButton,c);
 		
-		this.setVisible(true);
 		this.pack();
 		this.setMinimumSize(this.getSize());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 	}
 	
 	class OkButtonListener implements ActionListener {

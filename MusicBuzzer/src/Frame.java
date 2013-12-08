@@ -108,6 +108,8 @@ public class Frame extends JFrame{
 		
 		this.setLayout(layout);
 		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 1;
+		c.weighty = 1;
 		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy = 0;

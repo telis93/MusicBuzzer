@@ -1,5 +1,3 @@
-import abc.notation.AccidentalType;
-
 
 public class Note {
 	private String name;
@@ -41,14 +39,21 @@ public class Note {
 				
 	}
 	
-	public abc.notation.Note toABC() {
-		abc.notation.Note value = new abc.notation.Note(nametoABC());
+	public String toABC() {
+		String noteAsString = "";
 		if(sharp)
-			value.setAccidental(AccidentalType.SHARP);
+			noteAsString += "^";
 		else if(flat)
-			value.setAccidental(AccidentalType.FLAT);
-		value.setDuration(duration.toABC());
-		return value;
+			noteAsString += "_";
+		noteAsString += Character.toString(name.charAt(0));
+		for(int i = 0; i < Math.abs(octave); i++) {
+			if(octave > 0)
+				noteAsString += "'";
+			else
+				noteAsString += ",";
+		}
+		noteAsString += duration.toABC();
+		return noteAsString;	
 	}
 	
 	

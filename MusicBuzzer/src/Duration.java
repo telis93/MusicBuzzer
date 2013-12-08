@@ -1,5 +1,3 @@
-import abc.notation.Note;
-
 
 public class Duration {
 	private DurationValue value;
@@ -43,41 +41,42 @@ public class Duration {
 			return "\uD834\uDD63";
 	}
 	
-	public short toABC() {
+	public String toABC() {
 		if(value == DurationValue.WHOLE){
 			if(dotted)
-				return Note.DOTTED_WHOLE;
-			return Note.WHOLE;
+				return "8>";
+			return "8";
 		}
 		else if(value == DurationValue.HALF){
 			if(dotted)
-				return Note.DOTTED_HALF;
-			return Note.HALF;
+				return "6";
+			return "4";
 		}
 		else if(value == DurationValue.QUARTER) {
 			if(dotted)
-				return Note.DOTTED_QUARTER;
-			return Note.QUARTER;
+				return "3";
+			return "2";
 		}
 		else if(value == DurationValue.EIGHTTH) {
 			if(dotted)
-				return Note.DOTTED_EIGHTH;
-			return Note.EIGHTH;
+				return ">";
+			return "1";
 		}
 		else if(value == DurationValue.SIXTEENTH) {
 			if(dotted)
-				return Note.DOTTED_SIXTEENTH;
-			return Note.SIXTEENTH;
+				return "<>";
+			return "<";
 		}
 		else if(value == DurationValue.THIRTYSECOND) {
 			if(dotted)
-				return Note.DOTTED_THIRTY_SECOND;
-			return Note.THIRTY_SECOND;
+				return "<<>";
+			return "<<";
 		}
 		else {
-			if(dotted)
-				return Note.DOTTED_SIXTY_FOURTH; 
-			return Note.SIXTY_FOURTH;
+			return "";
+//			if(dotted)
+//				return Note.DOTTED_SIXTY_FOURTH; 
+//			return Note.SIXTY_FOURTH;
 		}
 	}
 	

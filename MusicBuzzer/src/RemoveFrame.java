@@ -66,6 +66,10 @@ public class RemoveFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			parent.getNotes().remove(list.getSelectedValue());
 			list.setListData((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
+			parent.getTune().addNotes();
+			if(parent.getNotes().isEmpty())
+				parent.getTune().getScoreComponent().setVisible(false);
+			parent.pack();
 		}
 	}
 	

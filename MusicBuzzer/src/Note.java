@@ -75,6 +75,7 @@ public class Note {
 	
 	public void updateOctave(int value) {
 		freq *= Math.pow(2, value);
+		octave = value;
 	}
 	
 	@Override

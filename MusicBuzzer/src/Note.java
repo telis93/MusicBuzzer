@@ -16,6 +16,7 @@ public class Note {
 		this.freq = freq;
 		this.flat = false;
 		this.sharp = false;
+		this.octave = 0;
 		this.duration = new Duration(DurationValue.QUARTER);
 	}
 	

@@ -48,6 +48,7 @@ public class RemoveFrame extends JFrame{
 		this.pack();
 		this.setMinimumSize(this.getSize());
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setLocationRelativeTo(parent);
 		this.setVisible(true);
 	}
 	

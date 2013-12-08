@@ -223,13 +223,16 @@ public class Frame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Note selectedNote = ((Note) list.getSelectedItem()).clone();
+			Duration selectedDuration = ((Duration) durationList.getSelectedItem()).clone();
 			
 			selectedNote.updateOctave(slider.getValue());
 			if(sharp.isSelected())
 				selectedNote.setSharp(true);
 			if(flat.isSelected())
 				selectedNote.setFlat(true);
-			selectedNote.setDuration((Duration) durationList.getSelectedItem());
+			if(dot.isSelected())
+				selectedDuration.setDotted(true);
+			selectedNote.setDuration(selectedDuration);
 			notes.add(selectedNote);
 		}
 	}
@@ -245,7 +248,7 @@ public class Frame extends JFrame{
 			    writer.write("beep ");
 			    for(Note n: notes) {
 				    double duration = n.getDuration().getDuration(100);
-				    if(dot.isSelected()) 
+				    if(n.getDuration().isDotted()) 
 				    	duration += duration/2;
 			    	writer.write(n.getFreq() + " " + duration + " /s 1 ");
 			    }

@@ -2,9 +2,26 @@ import abc.notation.Note;
 
 
 public class Duration {
-	DurationValue value;
+	private DurationValue value;
+	public boolean dotted;
+	
 	public Duration(DurationValue value) {
 		this.value = value;
+	}
+	
+	public boolean isDotted() {
+		return dotted;
+	}
+	
+	public void setDotted(boolean dotted) {
+		this.dotted = dotted;
+	}
+	
+	@Override
+	protected Duration clone() {
+		Duration value = new Duration(this.value);
+		this.setDotted(dotted);
+		return value;
 	}
 	
 	@Override

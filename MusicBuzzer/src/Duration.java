@@ -7,6 +7,7 @@ public class Duration {
 	
 	public Duration(DurationValue value) {
 		this.value = value;
+		this.dotted = false;
 	}
 	
 	public boolean isDotted() {

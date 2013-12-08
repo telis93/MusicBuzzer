@@ -17,6 +17,22 @@ public class Note {
 		this.duration = new DurationValue(DurationValue.Value.QUARTER);
 	}
 	
+	public String toABC() {
+		String value = "";
+		if(sharp)
+			value += "^";
+		else if(flat)
+			value += "_";
+		value = Character.toString(name.charAt(0));
+		for(int i = 0; i < octave; i++) {
+			if(octave > 0)
+				value += "'";
+			else
+				value += ",";
+		}
+		return value;
+	}
+	
 	public void setOctave(int octave) {
 		this.octave = octave;
 	}

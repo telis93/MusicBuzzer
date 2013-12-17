@@ -4,5 +4,11 @@
 	<classpathentry kind="lib" path="lib/JSplitButton_1.2.jar"/>
 	<classpathentry kind="lib" path="lib/abc4j_v0.5.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/org.eclipse.swt/swt.jar" sourcepath="/org.eclipse.swt/src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="http://help.eclipse.org/stable/nftopic/org.eclipse.platform.doc.isv/reference/api/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/Theodore/Git/MusicBuzzer/MusicBuzzer/lib/SWTSplitButton-1.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

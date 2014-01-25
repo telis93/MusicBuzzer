@@ -3,5 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="lib/JSplitButton_1.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/JMusic/jMusic1.6.4.jar" sourcepath="lib/JMusic/jMusic_1.6.4_src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/MusicBuzzer/lib/JMusic/jMusic_doc_1.6.4.zip!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

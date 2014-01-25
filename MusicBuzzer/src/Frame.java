@@ -49,7 +49,6 @@ public class Frame extends JFrame{
 	private JSplitButton removeButton;
 	private JPopupMenu removePopupMenu;
 	private JMenuItem removeAllMenuItem;
-	private MusicBuzzerTune tune;
 	
 	public Frame() {
 		super("MusicBuzzer");
@@ -62,7 +61,6 @@ public class Frame extends JFrame{
 		durationList = new JComboBox<Duration>();
 		addDurations();
 		durationList.setSelectedIndex(2);
-		tune = new MusicBuzzerTune(notes);
 		
 		layout = new GridBagLayout();
 		
@@ -148,10 +146,6 @@ public class Frame extends JFrame{
 		c.gridx = 3;
 		c.gridy = 2;
 		panel.add(removeButton,c);
-		c.gridx = 0;
-		c.gridy = 3;
-		c.gridwidth = 4;
-		panel.add(tune.getScoreComponent(),c);
 
 		this.pack();
 		this.setMinimumSize(this.getSize());
@@ -162,10 +156,6 @@ public class Frame extends JFrame{
 	
 	public ArrayList<Note> getNotes() {
 		return notes;
-	}
-	
-	public MusicBuzzerTune getTune() {
-		return tune;
 	}
 	
 	private void addDurations() {
@@ -187,6 +177,7 @@ public class Frame extends JFrame{
 		durations.addElement(new Duration(DurationValue.SIXTEENTH));
 		durations.addElement(new Duration(DurationValue.THIRTYSECOND));
 		durations.addElement(new Duration(DurationValue.SIXTYFOURTH));
+		durations.addElement(new Duration(DurationValue.ONEHUNDREDTWENTYEIGHTTH));
 		
 		durationList.setModel(durations);
 	}
@@ -244,8 +235,6 @@ public class Frame extends JFrame{
 				selectedDuration.setDotted(true);
 			selectedNote.setDuration(selectedDuration);
 			notes.add(selectedNote);
-			tune.addNotes();
-			Frame.this.pack();
 		}
 	}
 	
@@ -300,9 +289,6 @@ public class Frame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 				notes.clear();
-				tune.addNotes();
-				tune.getScoreComponent().setVisible(false);
-				Frame.this.pack();
 		}
 	}
 

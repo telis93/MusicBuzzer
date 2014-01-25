@@ -37,47 +37,10 @@ public class Duration {
 			return "\uD834\uDD61";
 		else if(value == DurationValue.THIRTYSECOND)
 			return "\uD834\uDD62";
-		else 
+		else if(value == DurationValue.SIXTYFOURTH)
 			return "\uD834\uDD63";
-	}
-	
-	public String toABC() {
-		if(value == DurationValue.WHOLE){
-			if(dotted)
-				return "8>";
-			return "8";
-		}
-		else if(value == DurationValue.HALF){
-			if(dotted)
-				return "6";
-			return "4";
-		}
-		else if(value == DurationValue.QUARTER) {
-			if(dotted)
-				return "3";
-			return "2";
-		}
-		else if(value == DurationValue.EIGHTTH) {
-			if(dotted)
-				return ">";
-			return "1";
-		}
-		else if(value == DurationValue.SIXTEENTH) {
-			if(dotted)
-				return "<>";
-			return "<";
-		}
-		else if(value == DurationValue.THIRTYSECOND) {
-			if(dotted)
-				return "<<>";
-			return "<<";
-		}
-		else {
-			return "";
-//			if(dotted)
-//				return Note.DOTTED_SIXTY_FOURTH; 
-//			return Note.SIXTY_FOURTH;
-		}
+		else
+			return "\uD834\uDD64";
 	}
 	
 	public double getDuration(int tempo) {

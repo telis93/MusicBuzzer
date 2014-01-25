@@ -24,7 +24,8 @@ public class RemoveFrame extends JFrame{
 		super("Remove");
 		this.parent = parent;
 		list = new JList<Note>((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
-		list.setPreferredSize(new Dimension(150, 200));
+		JScrollPane listScrollPane = new JScrollPane(list);
+		listScrollPane.setPreferredSize(new Dimension(150, 200));
 		list.setVisibleRowCount(11);
 		okButton = new JButton("OK");
 		okButton.addActionListener(new OkButtonListener());
@@ -37,7 +38,7 @@ public class RemoveFrame extends JFrame{
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridheight = 5;
-		panel.add(new JScrollPane(list),c);
+		panel.add(listScrollPane,c);
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 1;
 		c.gridy = 0;

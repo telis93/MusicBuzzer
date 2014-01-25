@@ -5,6 +5,7 @@ import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -112,6 +113,7 @@ public class Frame extends JFrame{
 
 		
 		this.setLayout(layout);
+		c.insets = new Insets(5, 5, 5, 5);
 		c.fill = GridBagConstraints.BOTH;
 		c.weightx = 1;
 		c.weighty = 1;

@@ -29,6 +29,9 @@ import javax.swing.JPopupMenu;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 
+import jm.constants.Frequencies;
+import jm.constants.Scales;
+
 import org.gpl.JSplitButton.JSplitButton;
 import org.gpl.JSplitButton.action.SplitButtonActionListener;
 
@@ -38,7 +41,7 @@ import org.gpl.JSplitButton.action.SplitButtonActionListener;
 public class Frame extends JFrame{
 	private GridBagLayout layout;
 	private JComboBox<MusicBuzzerNote> list;
-	private JComboBox<Duration> durationList;
+	private JComboBox<MusicBuzzerDuration> durationList;
 	private JSlider slider;
 	private JToggleButton dot;
 	private JToggleButton sharp;
@@ -58,7 +61,7 @@ public class Frame extends JFrame{
 		list.setFont(list.getFont().deriveFont((float)35));
 		((JLabel)list.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		addNotes();
-		durationList = new JComboBox<Duration>();
+		durationList = new JComboBox<MusicBuzzerDuration>();
 		addDurations();
 		durationList.setSelectedIndex(2);
 		
@@ -168,33 +171,25 @@ public class Frame extends JFrame{
 		}
 		freeSerif = freeSerif.deriveFont(Font.PLAIN, 35);
 		durationList.setFont(freeSerif);
-		DefaultComboBoxModel<Duration> durations = new DefaultComboBoxModel<Duration>();
+		DefaultComboBoxModel<MusicBuzzerDuration> musicBuzzerDurations = new DefaultComboBoxModel<MusicBuzzerDuration>();
 		
-		durations.addElement(new Duration(DurationValue.WHOLE));
-		durations.addElement(new Duration(DurationValue.HALF));
-		durations.addElement(new Duration(DurationValue.QUARTER));
-		durations.addElement(new Duration(DurationValue.EIGHTTH));
-		durations.addElement(new Duration(DurationValue.SIXTEENTH));
-		durations.addElement(new Duration(DurationValue.THIRTYSECOND));
-		durations.addElement(new Duration(DurationValue.SIXTYFOURTH));
-		durations.addElement(new Duration(DurationValue.ONEHUNDREDTWENTYEIGHTTH));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.WHOLE_NOTE));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.HALF_NOTE));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.QUARTER_NOTE));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.EIGHTH_NOTE));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.SIXTEENTH_NOTE));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.THIRTYSECOND_NOTE));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.THIRTYSECOND_NOTE/2));
+		musicBuzzerDurations.addElement(new MusicBuzzerDuration(MusicBuzzerDuration.THIRTYSECOND_NOTE/4));
 		
-		durationList.setModel(durations);
+		durationList.setModel(musicBuzzerDurations);
 	}
 
 	private void addNotes() {
 		DefaultComboBoxModel<MusicBuzzerNote> notes = new DefaultComboBoxModel<MusicBuzzerNote>();
-		int exp = 0;
-		int half = 0;
 		for(int i=0; i<7; i++) {
-			if((i+1)%3 == 0)
-				half--;
-			exp=(2*i) + half;
-			notes.addElement(new MusicBuzzerNote(Character.toString((char)('A'+i)),440*Math.pow(Math.pow(2, 1/12.0), exp)));
-			if(i>=2) {
-				notes.getElementAt(i).updateOctave(-1);
-				notes.getElementAt(i).setOctave(0);
-			}
+			double freq = Frequencies.FRQ[60 + Scales.MAJOR_SCALE[(5 + i)%7]];
+			notes.addElement(new MusicBuzzerNote(Character.toString((char)('A'+i)) + 4,freq));
 		}
 		
 		list.setModel(notes);
@@ -224,7 +219,7 @@ public class Frame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			MusicBuzzerNote selectedNote = ((MusicBuzzerNote) list.getSelectedItem()).clone();
-			Duration selectedDuration = ((Duration) durationList.getSelectedItem()).clone();
+			MusicBuzzerDuration selectedDuration = ((MusicBuzzerDuration) durationList.getSelectedItem()).clone();
 			
 			selectedNote.updateOctave(slider.getValue());
 			if(sharp.isSelected())
@@ -233,7 +228,7 @@ public class Frame extends JFrame{
 				selectedNote.setFlat(true);
 			if(dot.isSelected())
 				selectedDuration.setDotted(true);
-			selectedNote.setDuration(selectedDuration);
+			selectedNote.setMusicBuzzerDuration(selectedDuration);
 			notes.add(selectedNote);
 		}
 	}
@@ -248,10 +243,10 @@ public class Frame extends JFrame{
 			          new FileOutputStream("beep.bat"), "utf-8"));
 			    writer.write("beep ");
 			    for(MusicBuzzerNote n: notes) {
-				    double duration = n.getDuration().getDuration(100);
-				    if(n.getDuration().isDotted()) 
+				    double duration = n.getDuration(100);
+				    if(n.getMusicBuzzerDuration().isDotted()) 
 				    	duration += duration/2;
-			    	writer.write(n.getFreq() + " " + duration + " /s 1 ");
+			    	writer.write(n.getFrequency() + " " + duration + " /s 1 ");
 			    }
 			    
 			} catch (IOException ex) {

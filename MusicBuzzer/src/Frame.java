@@ -37,14 +37,14 @@ import org.gpl.JSplitButton.action.SplitButtonActionListener;
 @SuppressWarnings("serial")
 public class Frame extends JFrame{
 	private GridBagLayout layout;
-	private JComboBox<Note> list;
+	private JComboBox<MusicBuzzerNote> list;
 	private JComboBox<Duration> durationList;
 	private JSlider slider;
 	private JToggleButton dot;
 	private JToggleButton sharp;
 	private JToggleButton flat;
 	private JButton addButton;
-	private ArrayList<Note> notes;
+	private ArrayList<MusicBuzzerNote> notes;
 	private JButton playButton;
 	private JSplitButton removeButton;
 	private JPopupMenu removePopupMenu;
@@ -52,9 +52,9 @@ public class Frame extends JFrame{
 	
 	public Frame() {
 		super("MusicBuzzer");
-		this.notes = new ArrayList<Note>();
+		this.notes = new ArrayList<MusicBuzzerNote>();
 		Container panel = this.getContentPane();
-		list = new JComboBox<Note>();
+		list = new JComboBox<MusicBuzzerNote>();
 		list.setFont(list.getFont().deriveFont((float)35));
 		((JLabel)list.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		addNotes();
@@ -71,9 +71,9 @@ public class Frame extends JFrame{
 		slider.setOrientation(JSlider.VERTICAL);
 		slider.setPreferredSize(new Dimension(slider.getPreferredSize().width, slider.getPreferredSize().height-90) );
 		
-		sharp = new JToggleButton(Note.SHARP_SIGN);
+		sharp = new JToggleButton(MusicBuzzerNote.SHARP_SIGN);
 		sharp.setFont(sharp.getFont().deriveFont((float)35));
-		flat = new JToggleButton(Note.FLAT_SIGN);
+		flat = new JToggleButton(MusicBuzzerNote.FLAT_SIGN);
 		flat.setFont(flat.getFont().deriveFont((float)35));
 		dot = new JToggleButton(".");
 		dot.setFont(dot.getFont().deriveFont((float)35));
@@ -154,7 +154,7 @@ public class Frame extends JFrame{
 		this.setVisible(true);
 	}
 	
-	public ArrayList<Note> getNotes() {
+	public ArrayList<MusicBuzzerNote> getNotes() {
 		return notes;
 	}
 	
@@ -183,14 +183,14 @@ public class Frame extends JFrame{
 	}
 
 	private void addNotes() {
-		DefaultComboBoxModel<Note> notes = new DefaultComboBoxModel<Note>();
+		DefaultComboBoxModel<MusicBuzzerNote> notes = new DefaultComboBoxModel<MusicBuzzerNote>();
 		int exp = 0;
 		int half = 0;
 		for(int i=0; i<7; i++) {
 			if((i+1)%3 == 0)
 				half--;
 			exp=(2*i) + half;
-			notes.addElement(new Note(Character.toString((char)('A'+i)),440*Math.pow(Math.pow(2, 1/12.0), exp)));
+			notes.addElement(new MusicBuzzerNote(Character.toString((char)('A'+i)),440*Math.pow(Math.pow(2, 1/12.0), exp)));
 			if(i>=2) {
 				notes.getElementAt(i).updateOctave(-1);
 				notes.getElementAt(i).setOctave(0);
@@ -223,7 +223,7 @@ public class Frame extends JFrame{
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Note selectedNote = ((Note) list.getSelectedItem()).clone();
+			MusicBuzzerNote selectedNote = ((MusicBuzzerNote) list.getSelectedItem()).clone();
 			Duration selectedDuration = ((Duration) durationList.getSelectedItem()).clone();
 			
 			selectedNote.updateOctave(slider.getValue());
@@ -247,7 +247,7 @@ public class Frame extends JFrame{
 			    writer = new BufferedWriter(new OutputStreamWriter(
 			          new FileOutputStream("beep.bat"), "utf-8"));
 			    writer.write("beep ");
-			    for(Note n: notes) {
+			    for(MusicBuzzerNote n: notes) {
 				    double duration = n.getDuration().getDuration(100);
 				    if(n.getDuration().isDotted()) 
 				    	duration += duration/2;

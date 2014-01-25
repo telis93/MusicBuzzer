@@ -1,5 +1,5 @@
 
-public class Note {
+public class MusicBuzzerNote {
 	private String name;
 	private double freq;
 	private boolean sharp;
@@ -9,7 +9,7 @@ public class Note {
 	final static public String SHARP_SIGN = "#";
 	final static public String FLAT_SIGN = "\u266D";
 	
-	public Note(String name, double freq) {
+	public MusicBuzzerNote(String name, double freq) {
 		this.name = name;
 		this.freq = freq;
 		this.flat = false;
@@ -80,8 +80,8 @@ public class Note {
 	}
 	
 	@Override
-	protected Note clone() {
-		Note cloned = new Note(name, freq);
+	protected MusicBuzzerNote clone() {
+		MusicBuzzerNote cloned = new MusicBuzzerNote(name, freq);
 		cloned.setFlat(flat);
 		cloned.setSharp(sharp);
 		return cloned;

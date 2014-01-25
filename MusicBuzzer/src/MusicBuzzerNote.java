@@ -1,6 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.GETFIELD;
-
-import jm.constants.Frequencies;
 import jm.music.data.Note;
 
 @SuppressWarnings("serial")

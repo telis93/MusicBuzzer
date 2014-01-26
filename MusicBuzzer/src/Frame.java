@@ -88,11 +88,11 @@ public class Frame extends JFrame {
 		addButton.setFont(addButton.getFont().deriveFont((float) 18));
 		Image img = null;
 		try {
-			img = ImageIO.read(Frame.class
-					.getResource("/resources/playButtonIcon.jpg"));
+			img = ImageIO.read(Frame.class.getResource("/resources/playButtonIcon.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		img = img.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		playButton = new JButton(new ImageIcon(img));
 		playButton.setFont(playButton.getFont().deriveFont((float) 18));
 		removeButton = new JSplitButton("Remove...");

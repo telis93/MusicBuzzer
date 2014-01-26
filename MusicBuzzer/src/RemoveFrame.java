@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 public class RemoveFrame extends JFrame{
 	
 	private Frame parent;
-	private JList<Note> list;
+	private JList<MusicBuzzerNote> list;
 	private JButton okButton;
 	private JButton removeButton;
 	private Container panel;
@@ -24,7 +24,7 @@ public class RemoveFrame extends JFrame{
 	public RemoveFrame(Frame parent) {
 		super("Remove");
 		this.parent = parent;
-		list = new JList<Note>((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
+		list = new JList<MusicBuzzerNote>((MusicBuzzerNote[]) parent.getNotes().toArray(new MusicBuzzerNote[parent.getNotes().size()]));
 		JScrollPane listScrollPane = new JScrollPane(list);
 		listScrollPane.setPreferredSize(new Dimension(150, 200));
 		list.setVisibleRowCount(11);
@@ -69,13 +69,10 @@ public class RemoveFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			int selectedIndex = list.getSelectedIndex();
 			parent.getNotes().remove(list.getSelectedValue());
-			list.setListData((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
+			list.setListData((MusicBuzzerNote[]) parent.getNotes().toArray(new MusicBuzzerNote[parent.getNotes().size()]));
+
 			if(selectedIndex > 0)
 				list.setSelectedIndex(selectedIndex - 1);
-			parent.getTune().addNotes();
-			if(parent.getNotes().isEmpty())
-				parent.getTune().getScoreComponent().setVisible(false);
-			parent.pack();
 		}
 	}
 	

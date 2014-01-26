@@ -171,7 +171,7 @@ public class Frame extends JFrame {
 		panel.add(removeButton, c);
 		this.pack();
 		score.createPart().add(new Phrase(new Note(60,0.5)));
-		JScore<TrebleStave> scorePanel = new JScore<>(score, TrebleStave.class);
+		JScore<TrebleStave> scorePanel = new JScore<>(score, TrebleStave.class, this.getWidth());
 		this.pack();
 		scorePanel.setSize(this.getWidth(), scorePanel.getHeight());
 		c.gridwidth = 4;

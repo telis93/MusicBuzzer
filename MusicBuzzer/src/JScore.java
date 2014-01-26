@@ -1,4 +1,5 @@
 
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.reflect.ParameterizedType;
@@ -20,14 +21,14 @@ public class JScore<E extends Stave> extends JPanel {
 	private Vector<Stave> staves;
 	private Class<E> aClass;
 
-	public JScore(Score score, Class<E> aClass) {
+	public JScore(Score score, Class<E> aClass, int width) {
 		this.score = score;
 		this.aClass = aClass;
 		staves = new Vector<>();
+		this.setSize(width, this.getHeight());
 		Stave stave = getInstanceOfE();
-		stave.setSize(200, 200);
+		stave.setSize(this.getWidth(), stave.getHeight());
 		this.add(stave);
-		this.setSize(210, 210);
 		Enumeration<Part> enum1 = this.score.getPartList().elements();
 		int i = 0;
 		while (enum1.hasMoreElements()) {

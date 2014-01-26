@@ -17,9 +17,11 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -252,29 +254,27 @@ public class Frame extends JFrame{
 	}
 	
 	class PlayButtonListener implements ActionListener {
+		
+		private ImageIcon pauseIcon;
+		private Icon playIcon = playButton.getIcon();
+		private volatile boolean playing = false;
+	    private volatile File file;
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Writer writer = null;
 			
 			try {
-			    writer = new BufferedWriter(new OutputStreamWriter(
-			          new FileOutputStream("beep.bat"), "utf-8"));
-			    writer.write("beep ");
-			    for(Note n: notes) {
-				    double duration = n.getDuration().getDuration(100);
-				    if(n.getDuration().isDotted()) 
-				    	duration += duration/2;
-			    	writer.write(n.getFreq() + " " + duration + " /s 1 ");
-			    }
-			    
-			} catch (IOException ex) {
-			  // report
-			} finally {
-			   try {writer.close();} catch (Exception ex) {}
+				Image image = ImageIO.read(Frame.class.getResource("/resources/pauseButtonIcon.png"));
+				image = image.getScaledInstance(playIcon.getIconWidth(), playIcon.getIconHeight(), Image.SCALE_SMOOTH);
+				pauseIcon = new ImageIcon(image);
+			} catch (IOException e1) {
 			}
-			new Thread(new Runnable() {
+			
+			Thread t = new Thread(new Runnable() {
+
+				@Override
 				public void run() {
-					File file = new File("beep.exe");
 					file.delete();
 					if(!file.exists()) {
 						InputStream is = Frame.class.getResourceAsStream("/resources/Beep.exe");
@@ -291,8 +291,41 @@ public class Frame extends JFrame{
 						e.printStackTrace();
 					} 
 					file.delete();
+					playing = false;
+					playButton.setIcon(playIcon);
 				}
-			}).start();
+			});
+			
+			if (playing) {
+				playButton.setIcon(playIcon);
+				try {
+					Runtime.getRuntime().exec("taskkill /F /IM " + file.getName());
+				} catch (IOException e1) {}
+				playing = false;
+			} else {
+				playButton.setIcon(pauseIcon);
+				file = file = new File(UUID.randomUUID().toString() + ".exe");
+				try {
+				    writer = new BufferedWriter(new OutputStreamWriter(
+				          new FileOutputStream("beep.bat"), "utf-8"));
+				    writer.write(file.getName() + " ");
+				    for(Note n: notes) {
+					    double duration = n.getDuration().getDuration(100);
+					    if(n.getDuration().isDotted()) 
+					    	duration += duration/2;
+				    	writer.write(n.getFreq() + " " + duration + " /s 1 ");
+				    }
+				    
+				} catch (IOException ex) {
+				  System.out.println("hi");
+				} finally {
+				   try {writer.close();} catch (Exception ex) {}
+				}
+				t.start();
+				playing = true;
+			}
+				
+
 
 		}
 	}

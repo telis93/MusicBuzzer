@@ -36,6 +36,16 @@ import javax.swing.event.ChangeListener;
 
 import jm.constants.Frequencies;
 import jm.constants.Scales;
+import jm.gui.cpn.TrebleStave;
+import jm.gui.helper.HelperGUI;
+import jm.gui.histogram.Histogram;
+import jm.gui.show.ShowPanel;
+import jm.gui.show.ShowScore;
+import jm.gui.sketch.SketchScore;
+import jm.gui.wave.WaveView;
+import jm.music.data.Note;
+import jm.music.data.Phrase;
+import jm.music.data.Score;
 
 import org.gpl.JSplitButton.JSplitButton;
 import org.gpl.JSplitButton.action.SplitButtonActionListener;
@@ -56,11 +66,13 @@ public class Frame extends JFrame {
 	private JPopupMenu removePopupMenu;
 	private JMenuItem removeAllMenuItem;
 	private DefaultComboBoxModel<MusicBuzzerNote> notesListModel;
+	private Score score;
 
 	public Frame() {
 		super("MusicBuzzer");
 		this.notes = new ArrayList<MusicBuzzerNote>();
 		notesListModel = new DefaultComboBoxModel<MusicBuzzerNote>();
+		score = new Score();
 		Container panel = this.getContentPane();
 		list = new JComboBox<MusicBuzzerNote>();
 		list.setFont(list.getFont().deriveFont((float) 35));
@@ -157,7 +169,15 @@ public class Frame extends JFrame {
 		c.gridx = 3;
 		c.gridy = 2;
 		panel.add(removeButton, c);
-
+		this.pack();
+		score.createPart().add(new Phrase(new Note(60,0.5)));
+		JScore<TrebleStave> scorePanel = new JScore<>(score, TrebleStave.class);
+		this.pack();
+		scorePanel.setSize(this.getWidth(), scorePanel.getHeight());
+		c.gridwidth = 4;
+		c.gridx = 0;
+		c.gridy = 3;
+		panel.add(scorePanel, c);
 		this.pack();
 		this.setMinimumSize(this.getSize());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

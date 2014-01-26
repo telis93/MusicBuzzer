@@ -88,7 +88,6 @@ public class Frame extends JFrame{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		img = img.getScaledInstance(35, 35, Image.SCALE_SMOOTH);
 		playButton = new JButton(new ImageIcon(img));
 		playButton.setFont(playButton.getFont().deriveFont((float) 18));
 		removeButton =  new JSplitButton("Remove...");

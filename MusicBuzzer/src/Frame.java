@@ -287,20 +287,27 @@ public class Frame extends JFrame {
 				} catch (Exception ex) {
 				}
 			}
-			File file = new File("beep.exe");
-			file.delete();
-			InputStream is = Frame.class
-					.getResourceAsStream("/resources/Beep.exe");
-			try {
-				Files.copy(is, file.getAbsoluteFile().toPath());
-				Process p = Runtime.getRuntime().exec("beep.bat");
-				p.waitFor();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
-			file.delete();
+			new Thread(new Runnable() {
+				public void run() {
+					File file = new File("beep.exe");
+					file.delete();
+					if(!file.exists()) {
+						InputStream is = Frame.class.getResourceAsStream("/resources/Beep.exe");
+						try {
+							Files.copy(is, file.getAbsoluteFile().toPath());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					try {
+						Process p = Runtime.getRuntime().exec("beep.bat");
+						p.waitFor();
+					} catch (Exception e) {
+						e.printStackTrace();
+					} 
+					file.delete();
+				}
+			}).start();
 		}
 	}
 

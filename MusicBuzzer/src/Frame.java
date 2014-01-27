@@ -1,6 +1,7 @@
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -176,7 +177,7 @@ public class Frame extends JFrame{
 		InputStream is = Frame.class.getResourceAsStream("/resources/FreeSerif.ttf");
 		try {
 				freeSerif = Font.createFont(Font.TRUETYPE_FONT, is);
-		} catch (Exception e) {
+		} catch (FontFormatException | IOException e) {
 				e.printStackTrace();
 		}
 		freeSerif = freeSerif.deriveFont(Font.PLAIN, 35);

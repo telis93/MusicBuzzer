@@ -24,4 +24,20 @@
       </plugin>
     </plugins>
   </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>MusicBuzzer</groupId>
+  		<artifactId>JSplitButton_1.2</artifactId>
+  		<version>1.2</version>
+  		<systemPath>${basedir}/lib/JSplitButton_1.2.jar</systemPath>
+  		<scope>system</scope>
+  	</dependency>
+  	  	<dependency>
+  		<groupId>MusicBuzzer</groupId>
+  		<artifactId>abc4j_v0.5.jar</artifactId>
+  		<version>1.2</version>
+  		<systemPath>${basedir}/lib/abc4j_v0.5.jar</systemPath>
+  		<scope>system</scope>
+  	</dependency>
+  </dependencies>
 </project>

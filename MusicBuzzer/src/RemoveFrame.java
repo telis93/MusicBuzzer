@@ -23,6 +23,7 @@ public class RemoveFrame extends JFrame{
 
 	public RemoveFrame(Frame parent) {
 		super("Remove");
+		System.out.println("test travis");
 		this.parent = parent;
 		list = new JList<Note>((Note[]) parent.getNotes().toArray(new Note[parent.getNotes().size()]));
 		JScrollPane listScrollPane = new JScrollPane(list);
@@ -60,7 +61,7 @@ public class RemoveFrame extends JFrame{
 	class OkButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			RemoveFrame.this.dispose();	
+			RemoveFrame.this.dispose();
 		}
 	}
 	

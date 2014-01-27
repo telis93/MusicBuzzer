@@ -241,7 +241,6 @@ public class Frame extends JFrame {
 	}
 
 	class SharpButtonListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (flat.isSelected()) {
 				flat.setSelected(false);
@@ -250,7 +249,6 @@ public class Frame extends JFrame {
 	}
 
 	class FlatButtonListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (sharp.isSelected()) {
 				sharp.setSelected(false);
@@ -259,8 +257,12 @@ public class Frame extends JFrame {
 	}
 
 	class AddButtonListener implements ActionListener {
+<<<<<<< Upstream, based on jmusic-library
 
 		@Override
+=======
+		
+>>>>>>> 7b6ff5d Remove @Override from various methods
 		public void actionPerformed(ActionEvent e) {
 			MusicBuzzerNote selectedNote = ((MusicBuzzerNote) list
 					.getSelectedItem()).clone();
@@ -285,19 +287,31 @@ public class Frame extends JFrame {
 		private volatile boolean playing = false;
 	    private volatile File file;
 		
+<<<<<<< Upstream, based on jmusic-library
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Writer writer = null;
 
 			try {
+=======
+		public void actionPerformed(ActionEvent e) {
+			Writer writer = null;
+			
+			try {
+>>>>>>> 7b6ff5d Remove @Override from various methods
 				Image image = ImageIO.read(Frame.class.getResource("/resources/pauseButtonIcon.png"));
 				image = image.getScaledInstance(playIcon.getIconWidth(), playIcon.getIconHeight(), Image.SCALE_SMOOTH);
 				pauseIcon = new ImageIcon(image);
 			} catch (IOException e1) {
 			}
 			
+<<<<<<< Upstream, based on jmusic-library
 			Thread t = new Thread(new Runnable() {
 				@Override
+=======
+			Thread t = new Thread(new Runnable() {
+
+>>>>>>> 7b6ff5d Remove @Override from various methods
 				public void run() {
 					file.delete();
 					if(!file.exists()) {
@@ -352,18 +366,20 @@ public class Frame extends JFrame {
 	}
 
 	class RemoveButtonListener implements SplitButtonActionListener {
-		@Override
 		public void buttonClicked(ActionEvent e) {
 			new RemoveFrame(Frame.this);
 		}
 
+<<<<<<< Upstream, based on jmusic-library
 		@Override
 		public void splitButtonClicked(ActionEvent arg0) {
 		}
+=======
+		public void splitButtonClicked(ActionEvent arg0) {}
+>>>>>>> 7b6ff5d Remove @Override from various methods
 	}
 
 	class RemoveAllMenuItemListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			notes.clear();
 		}

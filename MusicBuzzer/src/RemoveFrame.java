@@ -59,14 +59,12 @@ public class RemoveFrame extends JFrame{
 	}
 	
 	class OkButtonListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			RemoveFrame.this.dispose();
 		}
 	}
 	
 	class removeButtonListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			int selectedIndex = list.getSelectedIndex();
 			parent.getNotes().remove(list.getSelectedValue());

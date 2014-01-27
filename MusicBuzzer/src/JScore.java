@@ -1,5 +1,5 @@
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
@@ -27,7 +27,7 @@ public class JScore<E extends Stave> extends JPanel {
 		createStave();
 		setScore(score);
 		this.setVisible(true);
-		this.setLayout(new FlowLayout());
+		this.setLayout(new GridLayout(0,1));
 		this.setMaximumSize(new Dimension(this.getWidth(), this.getMaximumSize().height));
 	}
 

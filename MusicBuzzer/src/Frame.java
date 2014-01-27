@@ -215,7 +215,6 @@ public class Frame extends JFrame{
 	}
 	
 	class SharpButtonListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(flat.isSelected()){
 				flat.setSelected(false);
@@ -224,7 +223,6 @@ public class Frame extends JFrame{
 	}
 	
 	class FlatButtonListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(sharp.isSelected()){
 				sharp.setSelected(false);
@@ -234,7 +232,6 @@ public class Frame extends JFrame{
 	
 	class AddButtonListener implements ActionListener {
 		
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			Note selectedNote = ((Note) list.getSelectedItem()).clone();
 			Duration selectedDuration = ((Duration) durationList.getSelectedItem()).clone();
@@ -260,7 +257,6 @@ public class Frame extends JFrame{
 		private volatile boolean playing = false;
 	    private volatile File file;
 		
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			Writer writer = null;
 			
@@ -273,7 +269,6 @@ public class Frame extends JFrame{
 			
 			Thread t = new Thread(new Runnable() {
 
-				@Override
 				public void run() {
 					file.delete();
 					if(!file.exists()) {
@@ -331,17 +326,14 @@ public class Frame extends JFrame{
 	}
 	
 	class RemoveButtonListener implements SplitButtonActionListener {
-		@Override
 		public void buttonClicked(ActionEvent e) {
 			new RemoveFrame(Frame.this);	
 		}
 
-		@Override
 		public void splitButtonClicked(ActionEvent arg0) {}
 	}
 	
 	class RemoveAllMenuItemListener implements ActionListener {
-		@Override
 		public void actionPerformed(ActionEvent e) {
 				notes.clear();
 				tune.addNotes();
